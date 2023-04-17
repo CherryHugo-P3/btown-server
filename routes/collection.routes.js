@@ -3,18 +3,19 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Spot = require("../models/Spot.model");
 const Collection = require("../models/Collection.model");
+const { isAuthenticated } = require("../middleware/jwt.middleware");
 
 // POST - CREATE a collection
-router.post("/collection", (req, res, next) => {
-  const { title, description, spot } = req.body;
+router.post("/", isAuthenticated, (req, res, next) => {
+  const { name, description, spot } = req.body;
 
-  Collection.create({ title, spot: [] })
+  Collection.create({ name, spot: [] })
     .then((response) => res.json(response))
     .catch((err) => res.json(err));
 });
 
 // GET - Display a collection
-router.get("/collection/:collectionId", (req, res, next) => {
+router.get("/:collectionId", isAuthenticated, (req, res, next) => {
   const { collectionId } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(collectionId)) {
@@ -29,7 +30,7 @@ router.get("/collection/:collectionId", (req, res, next) => {
 });
 
 // GET - Display all collections
-router.get("collections", (req, res, next) => {
+router.get("/", (req, res, next) => {
   Collection.find()
     .populate("spots")
     .then((allCollections) => res.json(allCollections))

@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const collectionSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
       required: [true, "Title is required"],
     },

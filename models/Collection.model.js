@@ -5,11 +5,14 @@ const collectionSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Title is required"],
+      required: [true, "Name is required"],
     },
     description: {
       type: String,
       required: [true, "Description is required."],
+    },
+    userId: {
+      type: { type: Schema.Types.ObjectId, ref: "User" },
     },
     spots: [{ type: Schema.Types.ObjectId, ref: "Spot" }],
   },

@@ -8,10 +8,11 @@ const { isAuthenticated } = require("../middleware/jwt.middleware");
 // POST - CREATE a collection
 router.post("/", isAuthenticated, (req, res, next) => {
   const { name, description, spot } = req.body;
+  const userId = req.payload._id;
 
-  Collection.create({ name, spot: [] })
+  Collection.create({ name, description, userId, spot: [] })
     .then((response) => res.json(response))
-    .catch((err) => res.json(err));
+    .catch((error) => res.json(error));
 });
 
 // GET - Display a collection
@@ -69,4 +70,10 @@ router.put("/collection/:collectionId", (req, res, next) => {
     .then((updatedCollection) => res.json(updatedCollection))
     .catch((error) => res.json(error));
 });
+//find collection id > spot id
+// collection.updateOne(
+//   { _id: collectionId },
+//   { $push: { spots: spotId } }
+// )
+
 module.exports = router;

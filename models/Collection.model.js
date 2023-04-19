@@ -5,16 +5,18 @@ const collectionSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Name is required"],
+      required: [true, "Title is required"],
     },
     description: {
       type: String,
       required: [true, "Description is required."],
     },
     userId: {
-      type: { type: Schema.Types.ObjectId, ref: "User" },
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-    spots: [{ type: Schema.Types.ObjectId, ref: "Spot" }],
+
+    spot: [{ type: Schema.Types.ObjectId, ref: "Spot" }],
   },
   {
     timestamps: true,

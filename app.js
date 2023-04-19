@@ -18,14 +18,14 @@ require("./config")(app);
 const indexRoutes = require("./routes/index.routes");
 app.use("/api", indexRoutes);
 
-const authRouter = require("./routes/auth.routes");
-app.use("/auth", authRouter);
+const authRoutes = require("./routes/auth.routes");
+app.use("/auth", authRoutes);
 
-const collectionRouter = require("./routes/collection.routes");
-app.use("/apicollection", collectionRouter);
+const collectionRoutes = require("./routes/collection.routes");
+app.use("/api/collection", collectionRoutes);
 
-const spotRouter = require("./routes/spot.routes");
-app.use("/api/spots", spotRouter);
+const spotRoutes = require("./routes/spot.routes");
+app.use("/api/spots", spotRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

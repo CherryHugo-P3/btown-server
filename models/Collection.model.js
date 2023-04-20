@@ -15,8 +15,11 @@ const collectionSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-
-    spot: [{ type: Schema.Types.ObjectId, ref: "Spot" }],
+    collectionId: {
+      type: Schema.Types.ObjectId,
+      ref: "Collection",
+    },
+    spots: [{ type: Schema.Types.ObjectId, ref: "Spot" }],
   },
   {
     timestamps: true,

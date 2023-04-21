@@ -18,6 +18,7 @@ const spotSchema = new Schema(
     },
     image: {
       type: String,
+      imageUrl: String,
     },
     userId: {
       type: Schema.Types.ObjectId,
